@@ -18,25 +18,25 @@ This repository is a small experimental playground for understanding application
 
 # Current State
 
-- Single client ↔ single server (TCP)
+- Single client ↔ single server communication over TCP
 
-- Messages are sent as a stream and reconstructed on the server
+- Application-layer message framing using delimiter-based parsing
 
-- Server processes complete messages while handling partial reads
+- Correct handling of TCP byte-stream fragmentation and partial reads
 
-- Simple request → response → close protocol
+- Explicit connection lifecycle management (receive → process → respond → close)
 
 # Why this Exists
 
 - This project is intentionally minimal and experimental.
-The goal is to build intuition about how real networked systems behave, rather than to provide a production-ready implementation.
+- The goal is to build intuition about how real networked systems behave, rather than to provide a production-ready implementation.
 
 # Next Steps (planned)
 
-- Clean protocol finalization
+- Formalize protocol semantics (message boundaries, termination rules)
 
-- Multiple message handling
+- Extend to persistent connections with multiple message exchanges
 
-- Multi-client support
+- Add multi-client support (concurrent connections)
 
-- Simulated delay / loss
+- Introduce simulated delay and packet loss for resilience testing
