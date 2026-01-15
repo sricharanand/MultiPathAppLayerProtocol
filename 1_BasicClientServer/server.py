@@ -17,7 +17,7 @@ serverSocket.listen() # pass a number to accept the number of connections, optio
 while True:
     # Accepting connections
     # Address of incoming connection
-    # THE SERVER SOCKET AIN'T USED TO COMMUNICATE (server socket just accepts).
+    # THE SERVER SOCKET ISN'T USED TO COMMUNICATE (server socket just listens accepts).
     # Each connection => Get a new socket
     communication_socket, address = serverSocket.accept()
     print(f"Connected to {address}")

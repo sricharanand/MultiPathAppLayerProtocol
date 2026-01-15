@@ -29,9 +29,12 @@ while True:
 
     applicationBuffer = ""
     fragment = ""
+    fragmentCount = 0
 
     while True:
         fragment = communication_socket.recv(8).decode('utf-8')
+        fragmentCount += 1
+        print(f"This is fragment number {fragmentCount} of size {len(fragment)} bytes.")
 
         # Termination condition
         # TCP signals - FIN received
@@ -53,4 +56,5 @@ while True:
 
     break
 
+    # Usually, bytes are fragmented, not strings.
     # IRL - The messages are length prefix - <length><Message> -> Read 'length' bytes and process
