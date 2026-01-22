@@ -2,6 +2,9 @@ import socket
 from math import ceil
 
 def recv_line(sock):
+    """
+    Read a newline-delimited control message from the server.
+    """
     buffer = b""
     while b"\n" not in buffer:
         data = sock.recv(8)
@@ -15,12 +18,7 @@ def recv_line(sock):
 HOST = socket.gethostbyname(socket.gethostname()) # Testing on the same PC, should point to the server IP
 PORT = 9999
 
-# For any multipath propagation, we require multiple sockets per client.
-# Clients decide HOW to send data, server just collects and reconstructs (just looks at item_id and chunk_id)
-# Different sockets use different port numbers
-# To identify a pre-existing session, we will use a CONTROL MESSAGE (just a NEW)
-
-# First socket opened -> Get session ID -> Store it
+# Establish first connection
 client_socket_A = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket_A.connect((HOST, PORT))
 
@@ -32,10 +30,9 @@ response = recv_line(client_socket_A)   # "SESSION|42"
 _, session_id = response.split("|", 1)
 session_id = int(session_id)
 
-# Client sends the session ID HERE, server reads and knows it's the same session (instead of 2 connections = 2 session IDs)
+# Establish second connection and attach to the same session
 client_socket_B = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket_B.connect((HOST, PORT))
-# Attach to existing session
 client_socket_B.sendall(f"SESSION|{session_id}\n".encode("utf-8"))
 
 print(f"The session ID is {session_id}")
@@ -58,9 +55,7 @@ while True:
             payload = message[pointer:pointer+chunk_size]
             frame = f"{item_id}|{chunk_id}|{total_chunks}|{payload}\n"
 
-            # Data splitting is deterministic (fixed and predetermined) here
-            # Adaptive routing involves changes depending on network conditions (traffic, failures, etc.)
-            # Alternate chunks sent (evens and odds)
+            # Deterministic multipath routing (even/odd chunks)
             if chunk_id % 2 == 0:
                 print("Even Chunk")
                 client_socket_A.sendall(frame.encode('utf-8'))
