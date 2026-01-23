@@ -19,15 +19,19 @@ Each directory represents a self-contained milestone in the design process.
   Minimal TCP client-server communication.
 
 - `2_MessageBoundaries`
+  
   Demonstrates why TCP requires application-layer framing and buffering.
 
 - `3_MultipleClients`
+  
   Introduces concurrent client handling using threads.
 
 - `4_ChunkedTransmission`
+  
   Implements application-layer chunking and deterministic reconstruction.
   
 - `5_MultiPath (final integrated implementation)`
+  
   Adds server-assigned session identifiers and control-plane handshake.
   Routes chunks across multiple concurrent TCP connections and unifies
   state at the session level for correct reconstruction.
@@ -59,19 +63,19 @@ The final design builds directly on concepts introduced in earlier stages.
 ## Architecture Overview
 
 ### Control Plane
-- Client initiates a session using 'SESSION|NEW'
+- Client initiates a session using the frame `SESSION|NEW`
 - Server assigns a unique session identifier
 - Additional connections attach using the same session ID
 
 ### Data Plane
 - Messages are split into fixed-size chunks
-- Chunks are framed as: [item_id|chunk_id|total_chunks|payload]
+- Chunks are framed as: `[item_id|chunk_id|total_chunks|payload]`
 - Chunks are routed deterministically across multiple sockets
 - Server reconstructs the original message once all chunks arrive
 
 ---
 
-## Files
+## Files & Stack
 
 - `server.py` — Session management, framing, and reconstruction logic
 - `client.py` — Session handshake, chunking, and multipath transmission
