@@ -7,6 +7,13 @@ The system demonstrates how multiple concurrent TCP connections can be unified
 into a single logical session, allowing data to be split across paths while preserving
 correctness at the application layer.
 
+## Repository Structure
+
+This repository is organized as a sequence of incremental prototypes,
+each introducing a new networking concept and building toward the final system.
+
+Each directory represents a self-contained milestone in the design process.
+
 ---
 
 ## Key Concepts
