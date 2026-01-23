@@ -14,19 +14,19 @@ each introducing a new networking concept and building toward the final system.
 
 Each directory represents a self-contained milestone in the design process.
 
-- '1_BasicClientServer'  
+- 1_BasicClientServer
   Minimal TCP client-server communication.
 
-- '2_MessageBoundaries` '
+- 2_MessageBoundaries
   Demonstrates why TCP requires application-layer framing and buffering.
 
-- '3_MultipleClients'
+- 3_MultipleClients
   Introduces concurrent client handling using threads.
 
-- '4_ChunkedTransmission'
+- 4_ChunkedTransmission
   Implements application-layer chunking and deterministic reconstruction.
   
-- '5_MultiPath'
+- 5_MultiPath (final integrated implementation)
   Adds server-assigned session identifiers and control-plane handshake.
   Routes chunks across multiple concurrent TCP connections and unifies
   state at the session level for correct reconstruction.
