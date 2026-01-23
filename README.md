@@ -15,6 +15,7 @@ each introducing a new networking concept and building toward the final system.
 Each directory represents a self-contained milestone in the design process.
 
 - `1_BasicClientServer`
+
   Minimal TCP client-server communication.
 
 - `2_MessageBoundaries`
