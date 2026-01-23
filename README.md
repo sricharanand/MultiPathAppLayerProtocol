@@ -47,7 +47,7 @@ The final design builds directly on concepts introduced in earlier stages.
   explicitly framed using newline delimiters and reconstructed using byte buffers.
 
 - **Session Establishment (Control Plane)**  
-  A server-assigned 'session_id' is negotiated via a lightweight control handshake.
+  A server-assigned `session_id` is negotiated via a lightweight control handshake.
   This allows multiple TCP connections to be associated with the same logical session.
 
 - **Multipath Data Transfer (Data Plane)**  
