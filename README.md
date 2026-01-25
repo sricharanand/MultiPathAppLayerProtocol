@@ -86,8 +86,7 @@ The final design builds directly on concepts introduced in earlier stages.
 
 ## Future Work
 
-Future extensions could include secret sharing, encryption of chunks, 
-adaptive routing policies, and performance evaluation under failure conditions.
+Future extensions could include adding encryptive measures, dynamic routing, and performance evaluation under failure conditions.
 
 Currently, application data is chunked directly and transmitted across multiple paths.
 This design naturally supports integration with secret sharing schemes such as Shamir’s Secret Sharing. 
