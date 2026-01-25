@@ -7,6 +7,8 @@ The system demonstrates how multiple concurrent TCP connections can be unified
 into a single logical session, allowing data to be split across paths while preserving
 correctness at the application layer.
 
+The current implementation uses UTF-8 text payloads. However, the protocol is agnostic to payload type and supports arbitrary binary data.
+
 ## Repository Structure
 
 This repository is organized as a sequence of incremental prototypes,
@@ -84,8 +86,12 @@ The final design builds directly on concepts introduced in earlier stages.
 
 ## Future Work
 
-Future extensions could include secret sharing, encryption of chunks,
+Future extensions could include secret sharing, encryption of chunks, 
 adaptive routing policies, and performance evaluation under failure conditions.
+
+Currently, application data is chunked directly and transmitted across multiple paths.
+This design naturally supports integration with secret sharing schemes such as Shamir’s Secret Sharing. 
+This, ultimately, preserves confidentiality even if individual paths are compromised and aligns with post-quantum resilient communication models.
 
 ---
 
