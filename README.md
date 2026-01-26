@@ -86,11 +86,21 @@ The final design builds directly on concepts introduced in earlier stages.
 
 ## Future Work
 
-Future extensions could include adding encryptive measures, dynamic routing, and performance evaluation under failure conditions.
+Future extensions of this system include integrating cryptographic encoding,
+adaptive routing policies, and systematic performance evaluation under
+controlled failure conditions.
 
-Currently, application data is chunked directly and transmitted across multiple paths.
-This design naturally supports integration with secret sharing schemes such as Shamir’s Secret Sharing. 
-This, ultimately, preserves confidentiality even if individual paths are compromised and aligns with post-quantum resilient communication models.
+The current implementation chunks application data directly and transmits it
+across multiple independent paths. This architecture naturally supports the
+integration of secret sharing schemes such as Shamir’s Secret Sharing, where
+each transmitted chunk represents a share of the original message. In such a
+design, confidentiality is preserved even if individual paths are compromised,
+as reconstruction is only possible upon receiving a sufficient subset of shares.
+
+This layering aligns with post-quantum resilient communication models, where
+security is achieved through distributed encoding and path diversity rather
+than reliance on a single cryptographic primitive.
+
 
 ---
 
