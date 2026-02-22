@@ -79,8 +79,8 @@ The final design builds directly on concepts introduced in earlier stages.
 
 ## Files & Stack
 
-- `server.py` — Session management, framing, and reconstruction logic
-- `client.py` — Session handshake, chunking, and multipath transmission
+- `server.py` -> Session management, framing, and reconstruction logic
+- `client.py` -> Session handshake, chunking, and multipath transmission
 
 ---
 
@@ -90,14 +90,15 @@ Future extensions of this system include integrating cryptographic encoding,
 adaptive routing policies, and systematic performance evaluation under
 controlled failure conditions.
 
-The current implementation chunks application data directly and transmits it
-across multiple independent paths. This architecture naturally supports the
-integration of secret sharing schemes such as Shamir’s Secret Sharing, where
-each transmitted chunk represents a share of the original message. In such a
-design, confidentiality is preserved even if individual paths are compromised,
+The current implementation chunks application data directly and transmits it across multiple independent paths. 
+This architecture naturally supports the integration of secret sharing schemes 
+such as Shamir’s Secret Sharing, where each transmitted chunk represents 
+a share of the original message. 
+
+In such a design, confidentiality is preserved even if individual paths are compromised, 
 as reconstruction is only possible upon receiving a sufficient subset of shares.
 
-This layering aligns with post-quantum resilient communication models, where
+This layering aligns with post-quantum resilient communication models, where 
 security is achieved through distributed encoding and path diversity rather
 than reliance on a single cryptographic primitive.
 
